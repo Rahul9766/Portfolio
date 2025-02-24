@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rahul Bhujbal - Java Developer | Assistant System Engineer at TCS with a background in data science and computer engineering." />
+  <meta name="keywords" content="Java, TCS, Assistant System Engineer, Data Science, Python, Computer Engineering" />
+  <meta name="author" content="Rahul Bhujbal" />
+  <title>Rahul Bhujbal | Java Developer & Data Enthusiast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">Rahul Bhujbal</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="hero">
+    <div class="hero-content" data-scroll="fade-in">
+      <h1>Rahul Bhujbal</h1>
+      <h3>Java Developer & Data Enthusiast</h3>
+      <p data-scroll="slide-right">Building robust backend solutions and leveraging data-driven insights</p>
+      <a href="#contact" class="cta-button" data-scroll="slide-left">Get in Touch</a>
+    </div>
+    <div class="hero-img" data-scroll="fade-in" style="background-image: url('assets/profile-pic.png');"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title" data-scroll="slide-right">About Me</h2>
+    <div class="about-content">
+      <div class="about-text" data-scroll="slide-right">
+        <p>
+          Hello, I'm Rahul – a passionate developer with a strong academic background in Computer Engineering, data analysis, and programming. I have honed my skills through internships and professional experience, and I’m always eager to learn and collaborate on data-driven projects.
+        </p>
+      </div>
+      <div class="timeline" data-scroll="slide-left">
+        <div class="timeline-item" onclick="openTimelineModal('college')">
+          <h4>Bachelor of Engineering<br><small>Computer Engineering</small></h4>
+          <p>July 2019 - June 2023</p>
+        </div>
+        <div class="timeline-item" onclick="openTimelineModal('intern')">
+          <h4>IOT &amp; Computer Vision Intern<br><small>The Sparks Foundation</small></h4>
+          <p>February 2022</p>
+        </div>
+        <div class="timeline-item" onclick="openTimelineModal('tcs')">
+          <h4>Assistant System Engineer<br><small>Tata Consultancy Services</small></h4>
+          <p>October 2023 - Present</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements">
+    <h2 class="section-title" data-scroll="slide-right">Achievements</h2>
+    <div class="achievements-content" data-scroll="fade-in">
+      <ul>
+        <li>Top skills include AWS, Cloud Computing, and Artificial Intelligence (AI).</li>
+        <li>Certified in HTML &amp; CSS, Python, and Full Stack with JavaScript.</li>
+        <li>Published work on TELEHEALTH - ONLINE HEALTHCARE.</li>
+        <li>Consistently endorsed on LinkedIn for technical expertise.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 class="section-title" data-scroll="slide-right">Projects</h2>
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card" data-scroll="fade-in">
+        <div class="project-image" style="background-image: url('assets/project1.png');"></div>
+        <div class="project-title-box">
+          <h3>Multi-Language Code Snippet Library</h3>
+        </div>
+        <div class="project-hover">
+          <p class="project-description">🚀 A full-stack web application designed to store, manage, and retrieve reusable code snippets across multiple programming languages.</p>
+          <div class="tech-stack">
+            <span class="tech-badge">SpringBoot</span>
+            <span class="tech-badge">RESTful APIs</span>
+            <span class="tech-badge">JAVA</span>
+            <span class="tech-badge">Spring Data JPA</span>
+            <span class="tech-badge">React</span>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-color-2" onclick="window.open('https://github.com/Rahul9766/Multi-Language-Code-Snippet-Library.git')">
+              <i class="fab fa-github"></i> GitHub
+            </button>
+            <button class="btn btn-color-2" onclick="openProjectModal('project1')">
+              <i class="fas fa-external-link-alt"></i> More Info
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="project-card" data-scroll="fade-in" data-scroll-delay="0.2">
+        <div class="project-image" style="background-image: url('assets/resume_generator.png');"></div>
+        <div class="project-title-box">
+          <h3>Resume Generator</h3>
+        </div>
+        <div class="project-hover">
+          <p class="project-description">A web application to create and download professional resumes.</p>
+          <div class="tech-stack">
+            <span class="tech-badge">HTML</span>
+            <span class="tech-badge">CSS</span>
+            <span class="tech-badge">JavaScript</span>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-color-2" onclick="window.open('https://github.com/Rahul9766/resumegenrator.github.io.git')">
+              <i class="fab fa-github"></i> GitHub
+            </button>
+            <button class="btn btn-color-2" onclick="openProjectModal('project2')">
+              <i class="fas fa-external-link-alt"></i> More Info
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="project-card" data-scroll="fade-in" data-scroll-delay="0.4">
+        <div class="project-image" style="background-image: url('assets/project3.jpg');"></div>
+        <div class="project-title-box">
+          <h3>Virtual Farming Assistance Platform</h3>
+        </div>
+        <div class="project-hover">
+          <p class="project-description">The 🌱 Virtual Farming Assistance Platform is a Spring Boot-based solution designed to assist farmers in optimizing their agricultural activities using AI-driven recommendations 🤖 and real-time insights 📊.</p>
+          <div class="tech-stack">
+            <span class="tech-badge">SpringBoot</span>
+            <span class="tech-badge">RESTful APIs</span>
+            <span class="tech-badge">MYSQL</span>
+            <span class="tech-badge">AI/ML Integration</span>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-color-2" onclick="window.open('https://github.com/Rahul9766/Virtual-Farming-Assistance-Platform.git')">
+              <i class="fab fa-github"></i> GitHub
+            </button>
+            <button class="btn btn-color-2" onclick="openProjectModal('project3')">
+              <i class="fas fa-external-link-alt"></i> More Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="projects-grid">
+      <!-- Project 4 -->
+      <div class="project-card" data-scroll="fade-in">
+        <div class="project-image" style="background-image: url('assets/project4.png');"></div>
+        <div class="project-title-box">
+          <h3>Hospital Receptionist Assistant Chatbot</h3>
+        </div>
+        <div class="project-hover">
+          <p class="project-description">🤖 A smart AI-powered chatbot built using Flask and Groq’s Llama3 model to assist hospital receptionists in providing quick and helpful responses to user queries.</p>
+          <div class="tech-stack">
+            <span class="tech-badge">Python (Flask)</span>
+            <span class="tech-badge">LangChain</span>
+            <span class="tech-badge">HTML</span>
+            <span class="tech-badge">CSS</span>
+            <span class="tech-badge">JavaScript</span>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-color-2" onclick="window.open('https://github.com/Rahul9766/Hospital_Assistant_Chatbot.git')">
+              <i class="fab fa-github"></i> GitHub
+            </button>
+            <button class="btn btn-color-2" onclick="openProjectModal('project4')">
+              <i class="fas fa-external-link-alt"></i> More Info
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+      
+
+
+    
+
+    
+    
+  </section>
+
+  <!-- Resume Section -->
+  <section id="resume">
+    <h2 class="section-title" data-scroll="slide-right">Resume</h2>
+    <div class="resume-content">
+      <div class="resume-details" data-scroll="slide-right">
+        <h3>Experience</h3>
+        <ul>
+          <li>Assistant System Engineer @Tata Consultancy Services (October 2023 - Present)</li>
+          <li>IOT &amp; Computer Vision Intern @The Sparks Foundation (February 2022)</li>
+        </ul>
+        <h3>Education</h3>
+        <ul>
+          <li>Bachelor of Engineering - Computer Engineering, Mumbai Educational Trust, MET League of Colleges (July 2019 - June 2023)</li>
+        </ul>
+      </div>
+      <div class="resume-download" data-scroll="slide-left">
+        <a href="https://shorturl.at/YORgv" download>Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 class="section-title" data-scroll="slide-right">Contact</h2>
+    <form class="contact-form" data-scroll="fade-in">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/rahul-bhujbal-dev" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Rahul9766" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p>&copy; 2023 Rahul Bhujbal. All rights reserved.</p>
+  </footer>
+
+  <!-- Project Modal Template -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeProjectModal()">&times;</span>
+      <div id="projectModalContent">
+        <!-- Dynamic content will load here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Modal Template -->
+  <div id="timelineModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeTimelineModal()">&times;</span>
+      <div id="timelineModalContent">
+        <!-- Dynamic content will load here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

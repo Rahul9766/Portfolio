@@ -1,0 +1,3 @@
+git remote add origin https://github.com/Rahul9766/Portfolio.git
+git branch -M main
+git push origin main --force
