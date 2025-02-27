@@ -177,7 +177,60 @@ function openProjectModal(projectId) {
   
       <p>📝 Developed with ❤️ using Flask & AI</p>
     `;
-  }
+  }else if (projectId === 'project5') {
+    modalContent.innerHTML = `
+      <h2>Intelligent IT Support Ticket Routing System 🚀</h2>
+      
+      <h3>Project Overview 📋</h3>
+      <ul>
+        <li><strong>Automated Ticket Routing:</strong> Automatically classifies and routes IT support tickets to the appropriate team.</li>
+        <li><strong>AI-Powered Simulation:</strong> Uses a mock AI API to analyze the ticket description and decide the assigned team and priority.</li>
+        <li><strong>Efficient IT Support:</strong> Streamlines the ticket triage process to reduce response times and minimize human errors.</li>
+        <li><strong>Spring Boot & H2:</strong> Built using Spring Boot with an in-memory H2 database for rapid development and testing.</li>
+      </ul>
+      
+      <h3>Key Features 🔑</h3>
+      <ul>
+        <li><strong>Automated Routing:</strong> Routes tickets based on context analysis without manual intervention.</li>
+        <li><strong>Priority Determination:</strong> Assigns a priority (High, Medium, Low) by detecting keywords in the ticket description.</li>
+        <li><strong>Multiple Support Teams:</strong> Supports various teams like Network, Software, Hardware, Security, Cloud, Database, and Infrastructure.</li>
+        <li><strong>RESTful API:</strong> Exposes a simple API endpoint for raising and managing tickets.</li>
+        <li><strong>Extensibility:</strong> Easily adaptable to integrate with a real AI service in the future.</li>
+      </ul>
+      
+      <h3>Technology Stack 💻</h3>
+      <ul>
+        <li><strong>Spring Boot:</strong> For building the RESTful service.</li>
+        <li><strong>Spring Data JPA:</strong> For ORM and database interactions.</li>
+        <li><strong>H2 Database:</strong> In-memory database for development and testing.</li>
+        <li><strong>Java 11+:</strong> Core programming language.</li>
+        <li><strong>Maven/Gradle:</strong> For dependency management and build automation.</li>
+      </ul>
+      
+      <h3>How It Works ⚙️</h3>
+      <ol>
+        <li><strong>Ticket Submission:</strong> A user submits a ticket with a description via a POST request.</li>
+        <li><strong>Ticket Creation:</strong> The system saves the ticket with a default status of NEW.</li>
+        <li><strong>AI Simulation:</strong> A mock AI client analyzes the description to determine:
+          <ul>
+            <li><strong>Assigned Team:</strong> e.g., Network, Software, Hardware, etc.</li>
+            <li><strong>Priority:</strong> e.g., High, Medium, or Low.</li>
+          </ul>
+        </li>
+        <li><strong>Ticket Update:</strong> The ticket is updated with the assigned team, determined priority, and status set to ASSIGNED.</li>
+        <li><strong>Response:</strong> The updated ticket details are returned in a JSON response, along with a success message.</li>
+      </ol>
+      
+      <h3>Problems Resolved & Benefits 🎯</h3>
+      <ul>
+        <li><strong>Eliminates Manual Errors:</strong> Automation reduces mistakes in assigning tickets to the wrong team.</li>
+        <li><strong>Faster Response Times:</strong> Quick routing leads to faster issue resolution.</li>
+        <li><strong>Optimized Resource Allocation:</strong> Ensures that specialized teams handle relevant issues, improving overall support efficiency.</li>
+        <li><strong>Scalable & Future-Proof:</strong> Lays the groundwork for advanced AI integration as support needs evolve.</li>
+        <li><strong>Enhanced User Experience:</strong> Improved ticket handling and resolution lead to higher satisfaction levels among users.</li>
+      </ul>
+    `;
+}
   
   modal.style.display = 'block';
 }
