@@ -139,13 +139,13 @@ function openProjectModal(projectId) {
       <h2>🏥 Hospital Receptionist Assistant Chatbot</h2>
   
       <p>
-        A smart AI-powered chatbot built using Flask and Groq’s Llama3 model to assist hospital receptionists 
+        A smart AI-powered chatbot built using Flask and Groq's Llama3 model to assist hospital receptionists 
         in providing quick and helpful responses to user queries.
       </p>
   
       <p><strong>✨ Key Features</strong></p>
       <ul>
-        <li>🤖 <strong>AI-powered chatbot:</strong> Uses Groq’s Llama3 model for intelligent responses.</li>
+        <li>🤖 <strong>AI-powered chatbot:</strong> Uses Groq's Llama3 model for intelligent responses.</li>
         <li>🌐 <strong>Web-based interface:</strong> Built with Flask for seamless user interaction.</li>
         <li>📞 <strong>Contact page:</strong> Provides hospital inquiry details.</li>
         <li>👨‍⚕️ <strong>Doctors page:</strong> Displays available specialists.</li>
@@ -162,7 +162,7 @@ function openProjectModal(projectId) {
       <p><strong>⚙️ How It Works</strong></p>
       <ul>
         <li>🚀 User enters a query on the chatbot interface.</li>
-        <li>🧠 The chatbot processes the input using LangChain and Groq’s Llama3 model.</li>
+        <li>🧠 The chatbot processes the input using LangChain and Groq's Llama3 model.</li>
         <li>💬 AI-generated response is sent back to the user.</li>
         <li>🏥 Users can navigate hospital-related pages like Doctors, Services, and Contact.</li>
       </ul>
@@ -277,3 +277,182 @@ window.onclick = function(event) {
     timelineModal.style.display = "none";
   }
 };
+
+// 3D Tilt Effect
+function initTiltEffect() {
+  const cards = document.querySelectorAll('.project-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      
+      card.style.setProperty('--rotateX', `${rotateX}deg`);
+      card.style.setProperty('--rotateY', `${rotateY}deg`);
+      card.classList.add('tilt');
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rotateX', '0');
+      card.style.setProperty('--rotateY', '0');
+      card.classList.remove('tilt');
+    });
+  });
+}
+
+// Scroll Reveal Animation
+function initScrollReveal() {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('[data-scroll]').forEach(element => {
+    observer.observe(element);
+  });
+}
+
+// Intersection Observer for animations
+const animationObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  },
+  {
+    threshold: 0.1,
+    rootMargin: '0px'
+  }
+);
+
+// Apply animation classes to elements
+function initAnimations() {
+  // Hero section animations
+  document.querySelector('.hero-content h1').classList.add('slide-in-left');
+  document.querySelector('.hero-content h3').classList.add('slide-in-right');
+  document.querySelector('.hero-content p').classList.add('fade-up');
+  document.querySelector('.hero-content .cta-button').classList.add('fade-up');
+  
+  // About section animations
+  document.querySelectorAll('.about-text p').forEach(el => el.classList.add('fade-up'));
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.classList.add('slide-in-right');
+    el.style.transitionDelay = `${i * 0.2}s`;
+  });
+  
+  // Projects section animations
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.classList.add('fade-up');
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+  
+  // Contact form animations
+  document.querySelectorAll('.contact-form input, .contact-form textarea').forEach((el, i) => {
+    el.classList.add('fade-up');
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+  
+  // Observe all animated elements
+  document.querySelectorAll('.fade-up, .slide-in-left, .slide-in-right').forEach(el => {
+    animationObserver.observe(el);
+  });
+}
+
+// Smooth navigation
+function initSmoothNavigation() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+}
+
+// Parallax effect for hero section
+function initParallax() {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    
+    if (hero && heroContent) {
+      hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+      heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+      heroContent.style.opacity = 1 - (scrolled * 0.003);
+    }
+  });
+}
+
+// Active section highlighting
+function initActiveSection() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - 60) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').slice(1) === current) {
+        link.classList.add('active');
+      }
+    });
+  });
+}
+
+// Mouse tracking effect for sections
+function initMouseTracking() {
+  document.querySelectorAll('section').forEach(section => {
+    section.addEventListener('mousemove', e => {
+      const rect = section.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      section.style.setProperty('--mouse-x', `${x}%`);
+      section.style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initAnimations();
+  initSmoothNavigation();
+  initParallax();
+  initActiveSection();
+  initMouseTracking();
+  initScrollReveal();
+  initTiltEffect();
+});
