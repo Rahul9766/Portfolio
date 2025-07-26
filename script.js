@@ -446,6 +446,265 @@ function initMouseTracking() {
   });
 }
 
+// Scroll Progress Bar
+function initScrollProgress() {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPercent + '%';
+  });
+}
+
+// Magnetic Cursor Effect
+function initMagneticCursor() {
+  const cursor = document.createElement('div');
+  cursor.className = 'magnetic-cursor';
+  document.body.appendChild(cursor);
+
+  let mouseX = 0, mouseY = 0;
+  let cursorX = 0, cursorY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.1;
+    cursorY += (mouseY - cursorY) * 0.1;
+    
+    cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+}
+
+// Professional Text Animation
+function initTextAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  // Add professional animations to elements
+  document.querySelectorAll('.section-title').forEach(title => {
+    title.classList.add('text-shimmer');
+    observer.observe(title);
+  });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.classList.add('card-glow');
+    observer.observe(card);
+  });
+}
+
+// Advanced Parallax Effect
+function initAdvancedParallax() {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    
+    parallaxElements.forEach(element => {
+      const speed = element.dataset.parallax || 0.5;
+      const yPos = -(scrolled * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  });
+}
+
+// Professional Hover Effects
+function initProfessionalEffects() {
+  // Add glow effect to buttons
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.style.boxShadow = '0 0 20px rgba(56, 189, 248, 0.5)';
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.boxShadow = 'none';
+    });
+  });
+
+  // Add pulse effect to tech badges
+  document.querySelectorAll('.tech-badge').forEach(badge => {
+    badge.addEventListener('mouseenter', () => {
+      badge.style.animation = 'pulse 0.6s ease-in-out';
+    });
+    
+    badge.addEventListener('animationend', () => {
+      badge.style.animation = '';
+    });
+  });
+}
+
+function addEventListeners() {
+  // Timeline items
+  document.querySelectorAll('.timeline-item[data-timeline]').forEach(item => {
+    item.addEventListener('click', () => {
+      openTimelineModal(item.getAttribute('data-timeline'));
+    });
+  });
+
+  // Project info buttons
+  document.querySelectorAll('.project-info[data-project]').forEach(button => {
+    button.addEventListener('click', () => {
+      openProjectModal(button.getAttribute('data-project'));
+    });
+  });
+
+  // GitHub link buttons
+  document.querySelectorAll('.github-link[data-url]').forEach(button => {
+    button.addEventListener('click', () => {
+      window.open(button.getAttribute('data-url'));
+    });
+  });
+
+  // Close project modal
+  const closeProjectBtn = document.querySelector('.close-project');
+  if (closeProjectBtn) {
+    closeProjectBtn.addEventListener('click', closeProjectModal);
+  }
+
+  // Close timeline modal
+  const closeTimelineBtn = document.querySelector('.close-timeline');
+  if (closeTimelineBtn) {
+    closeTimelineBtn.addEventListener('click', closeTimelineModal);
+  }
+}
+
+// Prepare for 3D/4D hero effect initialization
+function initHero3DEffect() {
+  // Extraordinary 3D/4D effect using Three.js
+  // Create a morphing, interactive 3D blob/wireframe in the hero-3d container
+  const container = document.querySelector('.hero-3d');
+  if (!container) return;
+
+  // Create renderer
+  const renderer = new window.THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setClearColor(0x000000, 0); // transparent
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
+
+  // Create scene
+  const scene = new window.THREE.Scene();
+
+  // Camera
+  const camera = new window.THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 32;
+
+  // Lighting
+  const ambientLight = new window.THREE.AmbientLight(0x7dd3fc, 0.7);
+  scene.add(ambientLight);
+  const pointLight = new window.THREE.PointLight(0x38bdf8, 1.2, 100);
+  pointLight.position.set(20, 20, 20);
+  scene.add(pointLight);
+
+  // Geometry: morphing blob
+  const geometry = new window.THREE.IcosahedronGeometry(10, 6);
+  const material = new window.THREE.MeshPhysicalMaterial({
+    color: 0x38bdf8,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.7,
+    roughness: 0.2,
+    metalness: 0.8,
+    clearcoat: 1,
+    clearcoatRoughness: 0.1,
+    sheen: 1,
+    sheenColor: 0xa78bfa,
+    emissive: 0xf472b6,
+    emissiveIntensity: 0.2,
+  });
+  const mesh = new window.THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  // Animate/morph geometry
+  let time = 0;
+  function animate() {
+    time += 0.008;
+    for (let i = 0; i < geometry.vertices.length; i++) {
+      const p = geometry.vertices[i];
+      p.normalize().multiplyScalar(10 + 1.5 * Math.sin(time + i));
+    }
+    geometry.verticesNeedUpdate = true;
+    mesh.rotation.x += 0.003;
+    mesh.rotation.y += 0.004;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+  // Mouse interaction: rotate mesh
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    mesh.rotation.y = mouseX * 0.7 + time * 0.2;
+    mesh.rotation.x = mouseY * 0.7 + time * 0.2;
+  });
+
+  // Responsive
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+
+  animate();
+}
+
+// Advanced Typewriter Effect for Hero Title
+function initTypewriterEffect() {
+  const el = document.querySelector('.typewriter');
+  if (!el) return;
+  const titles = [
+    'Java Developer',
+    'Backend Specialist',
+    'Data Enthusiast',
+    'AI Explorer',
+    'Spring Boot Expert'
+  ];
+  let titleIndex = 0;
+  let charIndex = 0;
+  let typing = true;
+
+  function type() {
+    if (typing) {
+      if (charIndex < titles[titleIndex].length) {
+        el.textContent = titles[titleIndex].substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(type, 80);
+      } else {
+        typing = false;
+        setTimeout(type, 1200);
+      }
+    } else {
+      if (charIndex > 0) {
+        el.textContent = titles[titleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(type, 40);
+      } else {
+        typing = true;
+        titleIndex = (titleIndex + 1) % titles.length;
+        setTimeout(type, 400);
+      }
+    }
+  }
+  type();
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   initAnimations();
@@ -455,4 +714,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initMouseTracking();
   initScrollReveal();
   initTiltEffect();
+  initScrollProgress();
+  initMagneticCursor();
+  initTextAnimations();
+  initAdvancedParallax();
+  initProfessionalEffects();
+  initHero3DEffect();
+  initTypewriterEffect();
+  addEventListeners();
 });

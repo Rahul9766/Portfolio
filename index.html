@@ -34,14 +34,15 @@
 
   <!-- Home Section -->
   <section id="home" class="hero">
+    <div class="hero-3d"></div>
     <div class="hero-content" data-scroll="fade-in">
       <h1>Rahul Bhujbal</h1>
-      <h3>Java Developer</h3>
-      <p data-scroll="slide-right">Building robust backend solutions and leveraging data-driven insights</p>
+      <h3 class="typewriter">Java Developer</h3>
+      <p class="hero-subtitle" data-scroll="slide-right">Building robust backend solutions and leveraging data-driven insights</p>
       <a href="#contact" class="cta-button" data-scroll="slide-left">Get in Touch</a>
     </div>
     <div class="hero-img">
-      <img src="assets/profile-pic.png" alt="Profile Picture">
+      <img src="assets/profile-pic.png" alt="Profile Picture" loading="lazy">
     </div>
   </section>
 
@@ -57,15 +58,15 @@
         </p>
       </div>
       <div class="timeline" data-scroll="slide-left">
-        <div class="timeline-item" onclick="openTimelineModal('college')">
+        <div class="timeline-item" data-timeline="college">
           <h4>Bachelor of Engineering<br><small>Computer Engineering</small></h4>
           <p>July 2019 - June 2023</p>
         </div>
-        <div class="timeline-item" onclick="openTimelineModal('intern')">
+        <div class="timeline-item" data-timeline="intern">
           <h4>IOT &amp; Computer Vision Intern<br><small>The Sparks Foundation</small></h4>
           <p>February 2022</p>
         </div>
-        <div class="timeline-item" onclick="openTimelineModal('tcs')">
+        <div class="timeline-item" data-timeline="tcs">
           <h4>Assistant System Engineer<br><small>Tata Consultancy Services</small></h4>
           <p>October 2023 - Present</p>
         </div>
@@ -107,11 +108,10 @@
             <span class="tech-badge">React</span>
           </div>
           <div class="btn-container">
-            <button class="btn btn-color-2"
-              onclick="window.open('https://github.com/Rahul9766/Multi-Language-Code-Snippet-Library.git')">
+              <button class="btn btn-color-2 github-link" data-url="https://github.com/Rahul9766/Multi-Language-Code-Snippet-Library.git">
               <i class="fab fa-github"></i> GitHub
             </button>
-            <button class="btn btn-color-2" onclick="openProjectModal('project1')">
+            <button class="btn btn-color-2 project-info" data-project="project1">
               <i class="fas fa-external-link-alt"></i> More Info
             </button>
           </div>
@@ -131,11 +131,10 @@
             <span class="tech-badge">JavaScript</span>
           </div>
           <div class="btn-container">
-            <button class="btn btn-color-2"
-              onclick="window.open('https://github.com/Rahul9766/resumegenrator.github.io.git')">
+              <button class="btn btn-color-2 github-link" data-url="https://github.com/Rahul9766/resumegenrator.github.io.git">
               <i class="fab fa-github"></i> GitHub
             </button>
-            <button class="btn btn-color-2" onclick="openProjectModal('project2')">
+            <button class="btn btn-color-2 project-info" data-project="project2">
               <i class="fas fa-external-link-alt"></i> More Info
             </button>
           </div>
@@ -158,11 +157,10 @@
             <span class="tech-badge">AI/ML Integration</span>
           </div>
           <div class="btn-container">
-            <button class="btn btn-color-2"
-              onclick="window.open('https://github.com/Rahul9766/Virtual-Farming-Assistance-Platform.git')">
+              <button class="btn btn-color-2 github-link" data-url="https://github.com/Rahul9766/Virtual-Farming-Assistance-Platform.git">
               <i class="fab fa-github"></i> GitHub
             </button>
-            <button class="btn btn-color-2" onclick="openProjectModal('project3')">
+            <button class="btn btn-color-2 project-info" data-project="project3">
               <i class="fas fa-external-link-alt"></i> More Info
             </button>
           </div>
@@ -192,11 +190,10 @@
             <span class="tech-badge">JavaScript</span>
           </div>
           <div class="btn-container">
-            <button class="btn btn-color-2"
-              onclick="window.open('https://github.com/Rahul9766/Hospital_Assistant_Chatbot.git')">
+              <button class="btn btn-color-2 github-link" data-url="https://github.com/Rahul9766/Hospital_Assistant_Chatbot.git">
               <i class="fab fa-github"></i> GitHub
             </button>
-            <button class="btn btn-color-2" onclick="openProjectModal('project4')">
+            <button class="btn btn-color-2 project-info" data-project="project4">
               <i class="fas fa-external-link-alt"></i> More Info
             </button>
           </div>
@@ -219,11 +216,10 @@
 
           </div>
           <div class="btn-container">
-            <button class="btn btn-color-2"
-              onclick="window.open('https://github.com/Rahul9766/ITSupport-Ticket-Routing-Application.git')">
+              <button class="btn btn-color-2 github-link" data-url="https://github.com/Rahul9766/ITSupport-Ticket-Routing-Application.git">
               <i class="fab fa-github"></i> GitHub
             </button>
-            <button class="btn btn-color-2" onclick="openProjectModal('project5')">
+            <button class="btn btn-color-2 project-info" data-project="project5">
               <i class="fas fa-external-link-alt"></i> More Info
             </button>
           </div>
@@ -258,7 +254,7 @@
         </ul>
       </div>
       <div class="resume-download" data-scroll="slide-left">
-        <a href="https://shorturl.at/YORgv" download>Download Resume</a>
+        <a href="assets/resume.pdf" download="Rahul_Bhujbal_Resume.pdf">Download Resume</a>
       </div>
     </div>
   </section>
@@ -286,7 +282,7 @@
   <!-- Project Modal Template -->
   <div id="projectModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeProjectModal()">&times;</span>
+      <span class="close close-project">&times;</span>
       <div id="projectModalContent">
         <!-- Dynamic content will load here -->
       </div>
@@ -296,13 +292,15 @@
   <!-- Timeline Modal Template -->
   <div id="timelineModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeTimelineModal()">&times;</span>
+      <span class="close close-timeline">&times;</span>
       <div id="timelineModalContent">
         <!-- Dynamic content will load here -->
       </div>
     </div>
   </div>
 
+  <script src="particles.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 
