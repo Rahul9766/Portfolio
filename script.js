@@ -37,14 +37,43 @@ scrollLinks.forEach(link => {
   });
 });
 
-// Preloader removal on window load
+// Enhanced Preloader removal on window load
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
-  preloader.style.opacity = '0';
+  
+  // Slower loading with longer delay to ensure Lottie animation plays
   setTimeout(() => {
-    preloader.style.display = 'none';
-  }, 500);
+    // Start the unblur effect first
+    document.body.classList.remove('loading');
+    
+    // Then fade out the entire preloader
+    setTimeout(() => {
+      preloader.style.opacity = '0';
+      preloader.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        // Enable scrolling after preloader is hidden
+        document.body.style.overflow = 'auto';
+      }, 800);
+    }, 1000); // Wait 1 second after unblur starts
+  }, 2000); // Minimum 2 seconds display time for slower animation
 });
+
+// Hide preloader if it takes too long (fallback)
+setTimeout(() => {
+  const preloader = document.getElementById('preloader');
+  if (preloader && preloader.style.display !== 'none') {
+    document.body.classList.remove('loading');
+    setTimeout(() => {
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 800);
+    }, 1000);
+  }
+}, 8000); // Maximum 8 seconds for slower animation
 
 // Modal functionality for projects
 function openProjectModal(projectId) {
@@ -775,7 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Additional fallback after 2 seconds
   setTimeout(() => {
     console.log('Adding final fallback event listeners...');
-    addEventListeners();
+  addEventListeners();
   }, 2000);
 });
 
@@ -803,9 +832,49 @@ window.testModal = function() {
   openProjectModal('project1');
 };
 
+// Mobile menu functionality
+function initMobileMenu() {
+  const mobileToggle = document.querySelector('.mobile-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const overlay = document.querySelector('.mobile-menu-overlay');
+  
+  if (mobileToggle && navLinks && overlay) {
+    mobileToggle.addEventListener('click', function() {
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking overlay
+    overlay.addEventListener('click', function() {
+      mobileToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // Close menu when clicking nav links
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+}
+
 // Direct button event listeners - Simple and reliable approach
 document.addEventListener("DOMContentLoaded", function() {
   console.log("Setting up direct button event listeners...");
+  
+  // Add loading class to body
+  document.body.classList.add('loading');
+  
+  // Initialize mobile menu
+  initMobileMenu();
   
   // GitHub buttons
   const githubButtons = document.querySelectorAll('.github-link');
@@ -856,6 +925,6 @@ document.addEventListener("DOMContentLoaded", function() {
       const timelineId = this.getAttribute('data-timeline');
       console.log('Timeline item clicked:', timelineId);
       openTimelineModal(timelineId);
-    });
+      });
   });
 });

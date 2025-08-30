@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="description"
     content="Rahul Bhujbal - Java Developer | Assistant System Engineer at TCS with a background in data science and computer engineering." />
   <meta name="keywords" content="Java, TCS, Assistant System Engineer, Data Science, Python, Computer Engineering" />
@@ -12,16 +12,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 </head>
 
 <body>
   <!-- Preloader -->
   <div id="preloader">
-    <div class="spinner"></div>
+    <div class="loading-container">
+      <dotlottie-wc src="https://lottie.host/1675db76-ff4c-42f6-869a-d692fd7dd7c5/8nnnplAAOV.lottie" style="width: 300px;height: 300px" speed="0.5" autoplay loop></dotlottie-wc>
+    </div>
   </div>
 
   <nav class="navbar">
     <div class="logo">Rahul Bhujbal</div>
+    <div class="mobile-menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -31,6 +39,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+  <div class="mobile-menu-overlay"></div>
 
   <!-- Home Section -->
   <section id="home" class="hero">
