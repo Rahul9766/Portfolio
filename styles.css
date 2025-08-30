@@ -924,10 +924,12 @@ section:hover::before {
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 3;
+  pointer-events: none;
 }
 
 .project-card:hover .project-hover {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .project-description {
@@ -959,6 +961,9 @@ section:hover::before {
 .btn-container {
   display: flex;
   gap: 1rem;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .btn {
@@ -969,6 +974,9 @@ section:hover::before {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .btn-color-2 {

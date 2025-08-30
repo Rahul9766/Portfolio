@@ -48,8 +48,14 @@ window.addEventListener('load', () => {
 
 // Modal functionality for projects
 function openProjectModal(projectId) {
+  console.log('Opening project modal for:', projectId);
   const modal = document.getElementById('projectModal');
   const modalContent = document.getElementById('projectModalContent');
+  
+  if (!modal || !modalContent) {
+    console.error('Modal elements not found!');
+    return;
+  }
   if (projectId === 'project1') {
     modalContent.innerHTML = `
       <h2>🚀 Multi-Language Code Snippet Library</h2>
@@ -233,10 +239,12 @@ function openProjectModal(projectId) {
 }
   
   modal.style.display = 'block';
+  console.log('Project modal should now be visible');
 }
 
 function closeProjectModal() {
   document.getElementById('projectModal').style.display = 'none';
+  console.log('Project modal closed');
 }
 
 // Modal functionality for timeline items
@@ -551,27 +559,57 @@ function initProfessionalEffects() {
 }
 
 function addEventListeners() {
+  console.log('Adding event listeners...');
+  
   // Timeline items
-  document.querySelectorAll('.timeline-item[data-timeline]').forEach(item => {
-    item.onclick = () => {
+  const timelineItems = document.querySelectorAll('.timeline-item[data-timeline]');
+  console.log('Timeline items found:', timelineItems.length);
+  timelineItems.forEach(item => {
+    item.addEventListener('click', () => {
+      console.log('Timeline item clicked:', item.getAttribute('data-timeline'));
       openTimelineModal(item.getAttribute('data-timeline'));
-    };
+    });
   });
 
   // Project info buttons
-  document.querySelectorAll('.project-info[data-project]').forEach(button => {
-    button.onclick = () => {
-      openProjectModal(button.getAttribute('data-project'));
+  const projectInfoButtons = document.querySelectorAll('.project-info[data-project]');
+  console.log('Project info buttons found:', projectInfoButtons.length);
+  projectInfoButtons.forEach(button => {
+    // Remove any existing event listeners
+    button.removeEventListener('click', button.clickHandler);
+    
+    // Create new click handler
+    button.clickHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const projectId = button.getAttribute('data-project');
+      console.log('Project info button clicked:', projectId);
+      openProjectModal(projectId);
     };
+    
+    button.addEventListener('click', button.clickHandler);
   });
 
   // GitHub link buttons
-document.querySelectorAll('.github-link[data-url]').forEach(button => {
-  button.addEventListener('click', () => {
-    window.open(button.getAttribute('data-url'), '_blank'); // force new tab
+  const githubButtons = document.querySelectorAll('.github-link[data-url]');
+  console.log('GitHub buttons found:', githubButtons.length);
+  githubButtons.forEach(button => {
+    // Remove any existing event listeners
+    button.removeEventListener('click', button.clickHandler);
+    
+    // Create new click handler
+    button.clickHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = button.getAttribute('data-url');
+      console.log('GitHub button clicked, URL:', url);
+      if (url) {
+        window.open(url, '_blank');
+      }
+    };
+    
+    button.addEventListener('click', button.clickHandler);
   });
-});
-
 
   // Close project modal
   const closeProjectBtn = document.querySelector('.close-project');
@@ -708,6 +746,8 @@ function initTypewriterEffect() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM Content Loaded - Initializing...');
+  
   initAnimations();
   initSmoothNavigation();
   initParallax();
@@ -722,7 +762,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initProfessionalEffects();
   initHero3DEffect();
   initTypewriterEffect();
+  
+  // Add event listeners immediately
   addEventListeners();
+  
+  // Fallback: Try to add event listeners again after a short delay
+  setTimeout(() => {
+    console.log('Adding fallback event listeners...');
+    addEventListeners();
+  }, 500);
+  
+  // Additional fallback after 2 seconds
+  setTimeout(() => {
+    console.log('Adding final fallback event listeners...');
+    addEventListeners();
+  }, 2000);
 });
 
 
@@ -740,5 +794,68 @@ document.addEventListener("DOMContentLoaded", function () {
       }, (err) => {
         alert("❌ Failed to send message. Please try again.\n" + JSON.stringify(err));
       });
+  });
+});
+
+// Test function for debugging - can be called from browser console
+window.testModal = function() {
+  console.log('Testing modal functionality...');
+  openProjectModal('project1');
+};
+
+// Direct button event listeners - Simple and reliable approach
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Setting up direct button event listeners...");
+  
+  // GitHub buttons
+  const githubButtons = document.querySelectorAll('.github-link');
+  console.log('Found', githubButtons.length, 'GitHub buttons');
+  githubButtons.forEach(function(button, index) {
+    console.log('GitHub button', index, ':', button);
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = this.getAttribute('data-url');
+      console.log('GitHub button clicked, URL:', url);
+      if (url) {
+        window.open(url, '_blank');
+      }
+    });
+  });
+  
+  // Project info buttons
+  const projectInfoButtons = document.querySelectorAll('.project-info');
+  console.log('Found', projectInfoButtons.length, 'project info buttons');
+  projectInfoButtons.forEach(function(button, index) {
+    console.log('Project info button', index, ':', button);
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const projectId = this.getAttribute('data-project');
+      console.log('Project info button clicked, projectId:', projectId);
+      openProjectModal(projectId);
+    });
+  });
+  
+  // Close modal buttons
+  document.querySelectorAll('.close-project').forEach(function(button) {
+    button.addEventListener('click', function() {
+      closeProjectModal();
+    });
+  });
+  
+  document.querySelectorAll('.close-timeline').forEach(function(button) {
+    button.addEventListener('click', function() {
+      closeTimelineModal();
+    });
+  });
+  
+  // Timeline items
+  document.querySelectorAll('.timeline-item[data-timeline]').forEach(function(item) {
+    item.addEventListener('click', function() {
+      const timelineId = this.getAttribute('data-timeline');
+      console.log('Timeline item clicked:', timelineId);
+      openTimelineModal(timelineId);
+    });
   });
 });
