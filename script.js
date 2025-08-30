@@ -553,24 +553,25 @@ function initProfessionalEffects() {
 function addEventListeners() {
   // Timeline items
   document.querySelectorAll('.timeline-item[data-timeline]').forEach(item => {
-    item.addEventListener('click', () => {
+    item.onclick = () => {
       openTimelineModal(item.getAttribute('data-timeline'));
-    });
+    };
   });
 
   // Project info buttons
   document.querySelectorAll('.project-info[data-project]').forEach(button => {
-    button.addEventListener('click', () => {
+    button.onclick = () => {
       openProjectModal(button.getAttribute('data-project'));
-    });
+    };
   });
 
   // GitHub link buttons
-  document.querySelectorAll('.github-link[data-url]').forEach(button => {
-    button.addEventListener('click', () => {
-      window.open(button.getAttribute('data-url'));
-    });
+document.querySelectorAll('.github-link[data-url]').forEach(button => {
+  button.addEventListener('click', () => {
+    window.open(button.getAttribute('data-url'), '_blank'); // force new tab
   });
+});
+
 
   // Close project modal
   const closeProjectBtn = document.querySelector('.close-project');
@@ -722,4 +723,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initHero3DEffect();
   initTypewriterEffect();
   addEventListeners();
+});
+
+
+// Contact form submission
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".contact-form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_iwh9xhe", "template_i9nv4jr", this)
+      .then(() => {
+        alert("✅ Message Sent Successfully!");
+        form.reset(); // clear form
+      }, (err) => {
+        alert("❌ Failed to send message. Please try again.\n" + JSON.stringify(err));
+      });
+  });
 });
